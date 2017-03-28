@@ -20,14 +20,25 @@
  * Constructor sets an empty board (default 3 rows, 4 columns) and 
  * specifies it is X's turn first
 **/
-Piezas::Piezas();
+Piezas::Piezas()
+{
+ // * Resets each board location to the Blank Piece value, with a board of the
+ //* same size as previously specified
+	turn = X;
+}
+void Piezas::reset()
+{
 
-/**
- * Resets each board location to the Blank Piece value, with a board of the
- * same size as previously specified
-**/
-void Piezas::reset();
+	for(int i=0; i<4; i++)
+	{
+		for(int j=0; j<4;j++)
+		{
+			board[i][j] = "Blank";
+		}
+	}
 
+
+}
 /**
  * Places a piece of the current turn on the board, returns what
  * piece is placed, and toggles which Piece's turn it is. dropPiece does 
@@ -35,15 +46,55 @@ void Piezas::reset();
  * In that case, placePiece returns Piece Blank value 
  * Out of bounds coordinates return the Piece Invalid value
  * Trying to drop a piece where it cannot be placed loses the player's turn
-**/ 
-Piece Piezas::dropPiece(int column);
+**/
+ 
+
+Piece Piezas::dropPiece(int column)
+{
+	if(turn == X)
+	{
+		turn = O;
+	}
+	if(turn == O)
+	{
+		turn == X;
+	{
+	if((column<0) || (column>3))
+	{
+		return Invalid;
+	}
+	if((board[column] == X) || (board[column] == O))
+		return turn;
+	if(turn == X)
+	{
+		board[column] = X;
+	}
+	if(turn == O)
+	{
+		board[column] == O;
+	}
+	else{
+		return Invalid;
+	}
+
+}
 
 /**
  * Returns what piece is at the provided coordinates, or Blank if there
  * are no pieces there, or Invalid if the coordinates are out of bounds
 **/
-Piece Piezas::pieceAt(int row, int column);
 
+Piece Piezas::pieceAt(int row, int column)
+{
+	if((board[row][column]== X) || (board[row][column] == O))
+	{
+		cout<< board[row][column] << endl;
+	}
+	else{
+		return Invalid;
+	}
+
+}
 /**
  * Returns which Piece has won, if there is a winner, Invalid if the game
  * is not over, or Blank if the board is filled and no one has won ("tie").
@@ -53,4 +104,22 @@ Piece Piezas::pieceAt(int row, int column);
  * or horizontally. If both X's and O's have the same max number of pieces in a
  * line, it is a tie.
 **/
-Piece Piezas::gameState();
+
+Piece Piezas::gameState()
+{
+	char won = X;
+	if(won == X)
+	{
+		cout << "X won"<<endl;
+	}
+	if(won == O);
+	{
+		cout<< "O won"<<endl;	
+	
+	}
+	else{
+		return Invalid;
+	}
+
+
+}
